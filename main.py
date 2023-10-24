@@ -2,7 +2,7 @@ import pyttsx3
 import PyPDF2
 
 # Open the PDF file
-book = open('bm.pdf', 'rb')
+book = open('lecture0-Ai.pdf', 'rb')
 pdfReader = PyPDF2.PdfReader(book)  # Use PdfReader instead of PdfFileReader
 pages = len(pdfReader.pages)  # Use len(pdfReader.pages) to get the total number of pages
 
@@ -16,6 +16,8 @@ speaker = pyttsx3.init()
 for num in range(pages):
     page = pdfReader.pages[num]  # Access each page using pdfReader.pages
     text = page.extract_text()  # Use extract_text() to extract text
+    voices = speaker.getProperty('voices')
+    speaker.setProperty('voice', voices[1].id)
     speaker.say(text)
 
 # Run the text-to-speech engine
